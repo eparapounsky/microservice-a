@@ -13,6 +13,9 @@ print(f"Microservice's response: {response}")
 
 # try to get a recipe without a valid recipe id
 print("Getting recipe with invalid ID, '50' ")
+socket.send_json({"recipeID": "50"})
+response = socket.recv_json()
+print(f"Microservice's response: {response}")
 
 # search for a recipe with a query that has matches
 print("Searching for recipe with query that has matches, 'pasta' ")
