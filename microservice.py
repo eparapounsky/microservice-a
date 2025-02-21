@@ -20,21 +20,22 @@ while True:
     request = socket.recv_json() # wait for requests from client in json format
 
     # get parameters from request
-    recipe_id = request.get("recipeID")
-    search_query = request.get("searchQuery", "") # empty string is default value to return if key is not found in dictionary
+    # empty string is default value to return if key is not found in dictionary
+    recipe_id = request.get("recipeID", "")
+    search_query = request.get("searchQuery", "").lower()
 
     # get recipe by recipe id
-    if recipe_id is not None:
+    if recipe_id:
         for recipe in recipes:
             if recipe["id"] == recipe_id:
                 socket.send_json(recipe)
 
     # search recipes by search query
-    if search_query is not None:
+    if search_query:
         search_results = []
 
         for recipe in recipes:
-            if search_query in recipe["name"]:
+            if search_query in recipe["name"].lower():
                 search_results.append(recipe)
 
         socket.send_json(search_results)
