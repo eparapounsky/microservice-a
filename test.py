@@ -19,6 +19,9 @@ print(f"Microservice's response: {response}")
 
 # search for a recipe with a query that has matches
 print("Searching for recipe with query that has matches, 'pasta' ")
+socket.send_json({"searchQuery": "pasta"})
+response = socket.recv_json()
+print(f"Microservice's response: {response}")
 
 # search for a recipe with a query that doesn't have matches
 print("Searching for recipe with query that doesn't have matches, 'pizza' ")
