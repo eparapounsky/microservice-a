@@ -12,3 +12,4 @@
   - For calls that are valid, this will return either the recipe corresponding to recipeID or a list of recipes that match the searchQuery.
 
 UML sequence diagram:
+![img.png](img.png)
