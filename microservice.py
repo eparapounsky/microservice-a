@@ -36,6 +36,8 @@ while True:
         if not recipe_found:
             socket.send_json({"Error": "Could not find specified recipe."})
 
+        continue # skip to next loop
+
     # search recipes by search query
     elif search_query:
         search_results = []
@@ -44,9 +46,15 @@ while True:
             matching_names = search_query in recipe["name"].lower()
             matching_ingredients = any(search_query in ingredient.lower() for ingredient in recipe["ingredients"])
 
-            if matching_names:
-                search_results.append(recipe)
-            elif matching_ingredients:
+            if matching_names or matching_ingredients:
                 search_results.append(recipe)
 
-        socket.send_json(search_results)
+        if search_results:
+            socket.send_json(search_results)
+        else:
+            socket.send_json({"Message": "No matching recipes found."})
+
+        continue # skip to next loop
+
+    socket.send_json({"Error": "No valid recipe ID or search query was provided."})
+
