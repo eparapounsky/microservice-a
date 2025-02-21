@@ -30,20 +30,17 @@ while True:
             if recipe["id"] == recipe_id:
                 socket.send_json(recipe)
 
-        continue # skip to next iteration of while loop
-
     # search recipes by search query
-    if search_query:
+    elif search_query:
         search_results = []
-
-        # for recipe in recipes:
-        #     if search_query in recipe["name"].lower():
-        #         search_results.append(recipe)
 
         for recipe in recipes:
             matching_names = search_query in recipe["name"].lower()
+            matching_ingredients = any(search_query in ingredient.lower() for ingredient in recipe["ingredients"])
 
             if matching_names:
+                search_results.append(recipe)
+            elif matching_ingredients:
                 search_results.append(recipe)
 
         socket.send_json(search_results)
