@@ -30,3 +30,7 @@ while True:
                 socket.send_json(recipe)
 
     # search recipes by search query
+    if search_query is not None:
+        search_results = []
+
+        for recipe in recipes:
