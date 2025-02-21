@@ -24,5 +24,9 @@ while True:
     search_query = request.get("searchQuery")
 
     # get recipe by recipe id
+    if recipe_id is not None:
+        for recipe in recipes:
+            if recipe["id"] == recipe_id:
+                socket.send_json(recipe)
 
     # search recipes by search query
