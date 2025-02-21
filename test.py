@@ -34,3 +34,6 @@ print("Sending an invalid request, 'none' ")
 socket.send_json({"none": "none"})
 response = socket.recv_json()
 print(f"Microservice's response: {response}")
+
+socket.close() # close socket
+context.term() # close context
