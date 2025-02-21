@@ -34,3 +34,7 @@ while True:
         search_results = []
 
         for recipe in recipes:
+            if search_query in recipe["name"]:
+                search_results.append(recipe)
+
+        socket.send_json(search_results)
