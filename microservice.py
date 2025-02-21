@@ -26,9 +26,15 @@ while True:
 
     # get recipe by recipe id
     if recipe_id:
+        recipe_found = False
+
         for recipe in recipes:
             if recipe["id"] == recipe_id:
                 socket.send_json(recipe)
+                recipe_found = True
+
+        if not recipe_found:
+            socket.send_json({"Error": "Could not find specified recipe."})
 
     # search recipes by search query
     elif search_query:
