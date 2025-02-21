@@ -25,6 +25,12 @@ print(f"Microservice's response: {response}")
 
 # search for a recipe with a query that doesn't have matches
 print("Searching for recipe with query that doesn't have matches, 'pizza' ")
+socket.send_json({"searchQuery": "pizza"})
+response = socket.recv_json()
+print(f"Microservice's response: {response}")
 
 # send an invalid request
 print("Sending an invalid request, 'none' ")
+socket.send_json({"none": "none"})
+response = socket.recv_json()
+print(f"Microservice's response: {response}")
