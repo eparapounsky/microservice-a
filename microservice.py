@@ -21,7 +21,7 @@ while True:
 
     # get parameters from request
     recipe_id = request.get("recipeID")
-    search_query = request.get("searchQuery")
+    search_query = request.get("searchQuery", "") # empty string is default value to return if key is not found in dictionary
 
     # get recipe by recipe id
     if recipe_id is not None:
