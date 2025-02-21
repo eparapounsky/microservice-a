@@ -7,6 +7,9 @@ socket.connect("tcp://localhost:5555") # connect to the remote socket
 
 # get a recipe with a valid recipe id
 print("Getting recipe with valid ID, '1' ")
+socket.send_json({"recipeID": "1"})
+response = socket.recv_json()
+print(f"Microservice's response: {response}")
 
 # try to get a recipe without a valid recipe id
 print("Getting recipe with invalid ID, '50' ")
